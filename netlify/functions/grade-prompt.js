@@ -1,3 +1,6 @@
+// Cette fonction tourne sur les serveurs de Netlify, jamais dans le navigateur.
+// La clé API reste donc secrète : elle n'est jamais visible par les visiteurs du site.
+
 export default async (req) => {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Méthode non autorisée" }), { status: 405 });
@@ -29,7 +32,7 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans texte avant ni après, sans 
 {"clarte":{"note":0,"commentaire":""},"contexte":{"note":0,"commentaire":""},"structure":{"note":0,"commentaire":""},"format":{"note":0,"commentaire":""},"note_globale":0,"prompt_ameliore":""}`;
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
